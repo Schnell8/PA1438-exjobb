@@ -1,7 +1,8 @@
 {
-  "name": "frontend",
+  "name": "exjobb-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -16,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && rsync -av --delete build/ chsc22@ssh.student.bth.se:www/editor"
   },
   "eslintConfig": {
     "extends": [
