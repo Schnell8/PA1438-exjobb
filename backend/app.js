@@ -3,12 +3,12 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import path from 'path';
-import tests from "./routes/testRoutes.js";
+import test from "./routes/testRoutes.js";
 import 'dotenv/config';
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors()); // Enables CORS (allows requests from other domains)
 
@@ -27,7 +27,7 @@ app.set('views', path.join(path.resolve(), 'views')); // Sets the 'views' folder
 
 app.use(express.static(path.join(path.resolve(), 'public'))); // Set folder for static files (CSS, images, JS files, etc.)
 
-app.use("/test", tests);
+app.use("/test", test);
 
 // Hello world route
 app.get("/", (req, res) => {
