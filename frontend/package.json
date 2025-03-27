@@ -17,8 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "npm run build && rsync -av --delete build/ chsc22@ssh.student.bth.se:www/editor"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
