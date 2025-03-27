@@ -8,6 +8,8 @@ const RegisterForm = () => {
     const handleRegister = () => {
         console.log('Register with: ', username, password, email);
         // Lägg till kod för att kontrollera username/email + hasha lösenord
+        // --> Gör en inloggning
+        // --> Gå till dashboard
     };
 
     return (

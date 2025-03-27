@@ -1,9 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+
 import LoginForm from '../components/LoginForm';
 
 const StartView = () => {
+    const navigate = useNavigate();
+
     const handleRegister = () => {
-        console.log('Redirecting to registration route...');
-        // Lägg till navigering till registreringssida
+        console.log('Redirecting to register route...');
+        navigate('/register');
     };
 
     return (
