@@ -1,6 +1,6 @@
 export const registerUser = async (email, password) => {
     try {
-        const response = await fetch('http://localhost:5001/auth/register', { // Make dynamical
+        const response = await fetch('http://localhost:5000/auth/register', { // Make dynamical
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
@@ -20,7 +20,7 @@ export const registerUser = async (email, password) => {
 
 export const loginUser = async (email, password) => {
     try {
-        const response = await fetch('http://localhost:5001/auth/login', { // Make dynamical
+        const response = await fetch('http://localhost:5000/auth/login', { // Make dynamical
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })
