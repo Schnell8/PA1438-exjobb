@@ -1,27 +1,32 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../services/authService';
 
 const LoginForm = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        console.log('Logging in with: ', username, password);
-        // Lägg till autentisering här
-        // AuthService fil?
-        // Then go to /dashboard
-        console.log('Redirecting to dashboard route...');
-        navigate('/dashboard');
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        try {
+            await loginUser(email, password);
+            navigate('/dashboard');
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
     return (
         <form onSubmit={handleLogin}>
             <input
-                type="username" 
-                placeholder="Username" 
-                value={username} 
-                onChange={(e) => setUsername(e.target.value)} 
+                type="email" 
+                placeholder="Email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
                 required 
             />
             <input
@@ -31,8 +36,8 @@ const LoginForm = () => {
                 onChange={(e) => setPassword(e.target.value)} 
                 required 
             />
-            <br/>
             <button type="submit">Login</button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
     );
 };

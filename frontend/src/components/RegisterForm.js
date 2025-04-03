@@ -1,24 +1,33 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { registerUser, loginUser } from '../services/authService';
 
 const RegisterForm = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleRegister = () => {
-        console.log('Register with: ', username, password, email);
-        // Lägg till kod för att kontrollera username/email + hasha lösenord
-        // --> Gör en inloggning
-        // --> Gå till dashboard
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        try {
+            await registerUser(email, password);
+            await loginUser(email, password);
+            navigate('/dashboard');
+        } catch (err) {
+            setError(err.message);
+        }
     };
 
     return (
         <form onSubmit={handleRegister}>
             <input
-                type="username" 
-                placeholder="Username" 
-                value={username} 
-                onChange={(e) => setUsername(e.target.value)} 
+                type="email" 
+                placeholder="Email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
                 required 
             />
             <input
@@ -28,14 +37,8 @@ const RegisterForm = () => {
                 onChange={(e) => setPassword(e.target.value)} 
                 required 
             />
-            <input
-                type="email" 
-                placeholder="Email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                required 
-            />
             <button type="submit">Register</button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
     );
 };
