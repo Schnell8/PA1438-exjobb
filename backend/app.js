@@ -5,6 +5,7 @@ import path from 'path';
 import test from './routes/test.js';
 import auth from './routes/auth.js';
 import protectedRoutes from './routes/protected.js';
+import avatar from './routes/avatar.js';
 import { connectDB } from './db/db.js';
 import 'dotenv/config';
 
@@ -33,6 +34,7 @@ connectDB();
 app.use('/test', test);
 app.use('/auth', auth);
 app.use('/protected', protectedRoutes);
+app.use('/avatar', avatar);
 
 // Hello world route
 app.get('/', (req, res) => {

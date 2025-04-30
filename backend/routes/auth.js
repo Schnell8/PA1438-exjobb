@@ -8,7 +8,7 @@ const router = express.Router();
 
 // Register user
 router.post('/register', async (req, res) => {
-    const { email, password } = req.body;
+    const { firstname, lastname, email, password } = req.body;
 
     try {
         // Check if user already exists
@@ -20,6 +20,8 @@ router.post('/register', async (req, res) => {
 
         // Create new user
         const newUser = new User({
+            firstname,
+            lastname,
             email,
             password
         });
@@ -29,9 +31,13 @@ router.post('/register', async (req, res) => {
         // Save user in database
         await newUser.save();
 
+        // Get initials
+        const avatarSeed = `${firstname.charAt(0)}${lastname.charAt(0)}`;
+
         // Create new avatar
         const newAvatar = new Avatar({
             user: newUser._id,
+            seed: avatarSeed,
         });
 
         // Save avatar in database
