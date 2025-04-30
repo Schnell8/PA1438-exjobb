@@ -1,9 +1,11 @@
-export const registerUser = async (email, password) => {
+const API_URL = 'http://localhost:5000/auth';
+
+export const registerUser = async (firstname, lastname, email, password) => {
     try {
-        const response = await fetch('http://localhost:5000/auth/register', { // Make dynamical
+        const response = await fetch(`${API_URL}/register`, { // Make dynamical
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ firstname, lastname, email, password })
         });
 
         const data = await response.json();
@@ -20,7 +22,7 @@ export const registerUser = async (email, password) => {
 
 export const loginUser = async (email, password) => {
     try {
-        const response = await fetch('http://localhost:5000/auth/login', { // Make dynamical
+        const response = await fetch(`${API_URL}/login`, { // Make dynamical
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password })

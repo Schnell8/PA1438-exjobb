@@ -5,7 +5,6 @@ const StartView = () => {
     const navigate = useNavigate();
 
     const handleRegister = () => {
-        console.log('Redirecting to register route...');
         navigate('/register');
     };
 
